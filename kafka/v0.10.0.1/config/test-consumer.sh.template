@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+#  Listen on the 'quickstart-events' topic
+#
+/opt/kafka_{{SCALA_VERSION}}-{{KAFKA_VERSION}}/bin/kafka-console-consumer.sh \
+                --topic quickstart-events \
+                --zookeeper {{ZOOKEEPER_CONNECTION_STRING}} \
+                --from-beginning

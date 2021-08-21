@@ -1,0 +1,9 @@
+[supervisord]
+nodaemon=true
+
+[program:zookeeper-server]
+command=/opt/kafka_2.11-0.10.0.1/bin/zookeeper-server-start.sh /opt/kafka_2.11-0.10.0.1/config/zookeeper.properties
+
+[program:kafka]
+environment=JMX_PORT={{JMX_PORT}}
+command=/opt/kafka_2.11-0.10.0.1/bin/kafka-server-start.sh /opt/kafka_2.11-0.10.0.1/config/server.properties

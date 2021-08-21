@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "Wait for Zookeeper"
+while ! echo exit | nc localhost {{ZOOKEEPER_CLIENT_PORT}}; do echo "Waiting for port {{ZOOKEEPER_CLIENT_PORT}}"; ssleep 2; done

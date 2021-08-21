@@ -1,0 +1,7 @@
+#!/bin/bash
+#
+# Create a test message on the 'quickstart-events'
+#
+echo "Hi, this message created $(date)" | /opt/kafka_{{SCALA_VERSION}}-{{KAFKA_VERSION}}/bin/kafka-console-producer.sh \
+                --topic quickstart-events \
+                --broker-list {{KAFKA_ADVERTISED_HOST_NAME}}:{{KAFKA_ADVERTISED_PORT}}
