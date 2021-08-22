@@ -1,22 +1,40 @@
+# This Makefile only used for local testing of the Docker build. 
+#
+# The docker build is run by a Github Action - see  /.github/workflows/build-kafka-0.10.0.1.yaml
+#
 .PHONY: build build-nocache push run test-producer test-consumer
 
 #
-# Compile the docker image
+# Setup a dockerx builder called 'multiplatform-builder'
+# 
+setup:
+	docker buildx create --name multiplatform-builder
+	docker buildx use multiplatform-builder
+	docker buildx inspect --bootstrap
+
+
+# Display the dockerx builder 'multiplatform-builder'
+# 
+inspect:
+	docker buildx use multiplatform-builder
+	docker buildx inspect
+
+#
+# Compile the docker image, & push to dockerhub
 #
 build:
-	docker build -t davidoram/kafka:0.10.0.1 . --progress plain
+	docker buildx build --platform=linux/amd64,linux/arm64 --tag=davidoram/kafka:0.10.0.1 --push .
 
 #
-# Compile the docker image no caching
+# Compile the docker image no caching, & push to dockerhub
 #
 build-nocache:
-	docker build -t davidoram/kafka:0.10.0.1 . --progress plain --no-cache
+	docker buildx build --platform=linux/amd64,linux/arm64 --tag=davidoram/kafka:0.10.0.1 --no-cache --push .
 
-# Push the application image to dockerhub
+# Display the manifest
 #
-push:
-	docker image push davidoram/kafka:0.10.0.1
-
+manifest:
+	docker manifest inspect --verbose davidoram/kafka:0.10.0.1
 #
 # Run the image
 #
