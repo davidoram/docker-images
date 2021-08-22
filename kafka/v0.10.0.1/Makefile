@@ -1,3 +1,7 @@
+# This Makefile only used for local testing of the Docker build. 
+#
+# The docker build is run by a Github Action - see  /.github/workflows/build-kafka-0.10.0.1.yaml
+#
 .PHONY: build build-nocache push run test-producer test-consumer
 
 #
