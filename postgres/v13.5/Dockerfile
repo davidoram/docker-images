@@ -1,2 +1,2 @@
 FROM postgres:13.5
-COPY postgresql.conf /var/lib/postgresql/data/postgresql.conf
+COPY postgresql.conf.sample /usr/share/postgresql/postgresql.conf.sample
