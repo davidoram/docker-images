@@ -34,7 +34,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
-        uses: docker/build-push-action@v2       
+        uses: docker/build-push-action@v3       
         with:
           file: kafka/v0.10.0.1/Dockerfile
           context: ./kafka/v0.10.0.1
