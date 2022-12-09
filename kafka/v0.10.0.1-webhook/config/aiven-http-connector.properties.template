@@ -1,0 +1,8 @@
+name=http-sink-test
+connector.class=io.aiven.kafka.connect.http.HttpSinkConnector
+topics.regex=*
+http.authorization.type=none
+http.url={{AIVEN_HTTP_URL}}
+batching.enabled=false
+batch.max.size=2
+tasks.max=1
