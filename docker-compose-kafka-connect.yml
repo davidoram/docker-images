@@ -1,0 +1,18 @@
+version: "3.3"
+services:
+  kafka:
+    image: davidoram/kafka:0.10.0.1
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+    ports:
+      - "9092:9092"
+      - "9075:9075"
+      - "2081:2081"
+  kafka-connect:
+    image: davidoram/kafka-connect:7.1.3
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+    ports:
+      - "9092:9092"
+      - "9075:9075"
+      - "2081:2081"
