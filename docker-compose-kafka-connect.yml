@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  kafka:
+    image: davidoram/kafka:0.10.0.1
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+    ports:
+      - "9092:9092"
+      - "9075:9075"
+      - "2081:2081"
+  kafka-connect:
+    image: davidoram/kafka-connect:7.3.1
+    deploy:
+          replicas: 1
+    environment:
+      - CONNECT_BOOTSTRAP_SERVERS=kafka:9092
+      - CONNECT_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+      - CONNECT_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+      - CONNECT_INTERNAL_KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+      - CONNECT_INTERNAL_VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+      - CONNECT_OFFSET_STORAGE_FILE_FILENAME=/tmp/connect.offsets
+      - CONNECT_OFFSET_FLUSH_INTERVAL_MS=10000
+      - CONNECT_LISTENERS=http://0.0.0.0:8083
+    ports:
+      - "8083:8083"
