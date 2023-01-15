@@ -5,9 +5,6 @@
 FROM confluentinc/cp-kafka-connect-base:latest
 USER root
 RUN yum install -y jq unzip
-COPY kafka-connect-start.sh /kafka-connect-start.sh
 COPY kafka-connect-install.sh /kafka-connect-install.sh
 RUN /kafka-connect-install.sh
-ENTRYPOINT [ "/bin/bash" ]
-USER appuser
-CMD [ "-c", "/kafka-connect-start.sh" ]
+COPY files /etc/confluent/docker

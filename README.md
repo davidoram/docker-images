@@ -38,6 +38,9 @@ Useful docker images, that run on `amd64` and `arm64` architectures:
 
 To create a system for testing `kafka` alongside `kafka-connect` you need to run them so that you can acesss them from your local machine. To do this you need to run them on the `bridge` network, and then expose the ports to your local machine.
 
-If you want to test a connector like [http-connector-for-apache-kafka](https://github.com/aiven/http-connector-for-apache-kafka), then the `kafka-connect` needs to be both connect to `kafka`, and also make webhook calls out to your local machine, so we can do that using the following Docker commands:
+If you want to test a connector like [http-connector-for-apache-kafka](https://github.com/aiven/http-connector-for-apache-kafka), then the `kafka-connect` needs to be both connect to `kafka`, and also make webhook calls out to your local machine, so we can do that using the following  commands:
 
-`docker compose -f docker-compose-kafka-connect.yml up`
+- Run kafka + kafka-connect: `docker compose -f docker-compose-kafka-connect.yml up`
+- Run a test server: `go run kafka-connect/test-server.go`
+- List connectors: `curl -s -X GET "http://localhost:8083/connectors/"`
+- Add a connector: `curl -s -X POST -H "Content-Type: application/json" -d @kafka-connect/test-connector.json "http://localhost:8083/connectors/"`
