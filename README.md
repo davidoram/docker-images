@@ -2,6 +2,7 @@
 
 Useful docker images, that run on `amd64` and `arm64` architectures:
 
+- [`Jailer v15.1.3`](jailer/v15.1.3/Dockerfile) See [Jailer](https://github.com/Wisser/Jailer) for more details.  This image is built from the `Jailer` source code, and is not available on Docker Hub. It is built for `amd64` and `arm64` architectures. Jailer is installed in `/opt/jailer`, which is added to the `PATH` environment variable.
 - [`Kafka v0.10.0.1`](kafka/v0.10.0.1/Dockerfile)
 - [`Postgres v13.5`](postgres/v13.5/Dockerfile)
   - Postgres `v13.5` made suitable for unit testing, by making the following configuration changes:
