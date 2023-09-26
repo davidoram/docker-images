@@ -19,7 +19,7 @@ Useful docker images, that run on `amd64` and `arm64` architectures:
     - Editing the `postgresql.conf.sample` which is copied into the new image via the custom Dockerfile
   - To test it run `docker run --name dev-postgres  -e POSTGRES_PASSWORD='password' --rm -p 5432:5432 --network=bridge davidoram/postgres:13.5` and then connect to it and execute `SHOW max_connections;` which should be `1000`
 - [`Postgres v13.5-pglogical`](postgres/v13.5-pglogical/Dockerfile). Is a standard postgres 13.5 image with the pglogical extension installed, and enabled. Suitable for testing.
-  - To test it run `docker run --name dev-postgres  -e POSTGRES_PASSWORD='password' --rm -p 5432:5432 --network=bridge davidoram/postgres:13.5-pglogical`
+  - To test it run `docker run --name dev-postgres  -e POSTGRES_PASSWORD='password' --rm -p 5432:5432 --network=bridge davidoram/postgres-pglogical:13.5`
 - [`Timescale v2.5.1`]()
   - Timescaledb `v2.5.1` made suitable for unit testing, by making the following configuration changes:
 
