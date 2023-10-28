@@ -1,0 +1,26 @@
+name: docker-build-go-kafka-client-v1.4.4
+
+on:
+  push:
+    paths:
+      - "go-kafka-client/v1.4.4/**"
+      - '.github/workflows/build-go-kafka-client-1.4.4.yaml'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.1.0
+      - name: Login to DockerHub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with:
+          file: go-kafka-client/v1.4.4/Dockerfile
+          context: ./go-kafka-client/v1.4.4
+          push: true
+          tags: davidoram/go-kafka-client:1.4.4
