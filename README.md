@@ -2,6 +2,7 @@
 
 Useful docker images, that run on `amd64` and `arm64` architectures:
 
+- [`go-kafka-client v1.4.4`](go-kafka-client/v1.4.4/Dockerfile), is a `golang` image that contains preinstalled with the [librdkafka](https://github.com/confluentinc/librdkafka) library `v1.4.4` which works with Kafka `v0.10.0.1`. Note - this is **not** a multi-architecture build because thats not posible with this old version of librdkafka, but it will run fine on am M1 Mac.
 - [`Jailer v15.1.3`](jailer/v15.1.3/Dockerfile) See [Jailer](https://github.com/Wisser/Jailer) for more details.  This image is built from the `Jailer` source code, and is not available on Docker Hub. It is built for `amd64` and `arm64` architectures. Jailer is installed in `/opt/jailer`, which is added to the `PATH` environment variable.
 - [`Kafka v0.10.0.1`](kafka/v0.10.0.1/Dockerfile)
 - [`Postgres v13.5`](postgres/v13.5/Dockerfile)
