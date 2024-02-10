@@ -1,4 +1,4 @@
-FROM golang:1.21.3-alpine AS builder
+FROM golang:1.22.0-alpine3.18 AS builder
 
 WORKDIR /usr/src/app
 
@@ -6,10 +6,10 @@ RUN apk add --no-cache openssh-client git gcc make bc musl-dev bash build-base o
 RUN wget -O /usr/local/bin/wait-for-it.sh https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
     chmod +x /usr/local/bin/wait-for-it.sh
 
-ARG MIGRATE_VERSION=v4.16.2
+ARG MIGRATE_VERSION=v4.17.0
 RUN go install -tags 'postgres' github.com/golang-migrate/migrate/v4/cmd/migrate@${MIGRATE_VERSION} && \
     mv /go/bin/migrate /usr/local/bin/
-ARG LINTER_VERSION=v1.55.0
+ARG LINTER_VERSION=v1.56.1
 RUN wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
     sh -s ${LINTER_VERSION} && \
     mv bin/golangci-lint /usr/local/bin/
